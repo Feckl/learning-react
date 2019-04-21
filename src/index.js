@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
-import NameList from './list/nameList';
+import Lifecycle from './list/lifecycle';
 
-ReactDOM.render(<NameList />, document.getElementById('root'));
+ReactDOM.render(<Lifecycle />, document.getElementById('root'));
 
 serviceWorker.unregister();
