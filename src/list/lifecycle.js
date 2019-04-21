@@ -37,7 +37,9 @@ class NameList extends Component {
   componentWillReceiveProps() {
     console.log('componentWillReceiveProps')
   }
-  shouldComponentUpdate() {
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log(nextProps)
+    console.log(nextState)
     if (!'不允许props或者states变化') {
       console.log ('No entry')
       return false
