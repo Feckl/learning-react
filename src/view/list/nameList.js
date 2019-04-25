@@ -1,7 +1,6 @@
-import React, { Component, Fragment } from 'react'
-import 'antd/dist/antd.css';
-import { Input, Button, List } from 'antd'
+import React, { Component } from 'react'
 import Store from '../../store'
+import NameListUI from './nameListUI'
 
 // learning 存储
 class NameList extends Component {
@@ -12,36 +11,22 @@ class NameList extends Component {
   }
   render() {
     return (
-      <Fragment>
-        <div style={{ margin: 10, width: 400 }}>
-          <Input
-            placeholder="Place enter your name"
-            style={{ width: 330, marginRight: 10 }}
-            value={this.state.inputValue}
-            onChange={this.enterName.bind(this)}/>
-          <Button type="primary" onClick={this.addName.bind(this)}> Add </Button>
-        </div>
-        <List
-          style={{width:400, margin:10}}
-          bordered
-          dataSource={this.state.nameList}
-          renderItem={(item, index) => (
-            <List.Item>
-              { item }
-              <Button type="danger" onClick={this.delName.bind(this, index)} style={{float: "right", marginTop: '-5px'}}>X</Button>
-            </List.Item>
-        )}/>
-      </Fragment>
+      <NameListUI
+        inputValue={this.state.inputValue}
+        nameList={this.state.nameList}
+        enterName={this.enterName}
+        addName={this.addName}
+        delName={this.delName}/>
     )
+  }
+  changeName(){
+    this.setState(Store.getState())
   }
   enterName(e){
     Store.dispatch({
       type: 'enter-name',
       value: e.target.value
     })
-  }
-  changeName(){
-    this.setState(Store.getState())
   }
   addName(){
     Store.dispatch({
